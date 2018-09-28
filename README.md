@@ -19,7 +19,6 @@ Project/
      └── cmake-tool/ 
 ```
 
-
 ## Libraries in Sel4 
 A library is pretty much the same as an application, and this does not change in the Sel4 build system : We create a project directory (here project/libFoo), and add a CMakeLists.txt and some code inside. One diffence will be the presence of some include folder to contain the library's public interface.
 
