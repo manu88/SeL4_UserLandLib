@@ -47,5 +47,55 @@ libFoo/
 
 ```
 
+The sole available method in libFoo is `getRandom()`:
 
+**foo.h:**
+
+```C
+#ifndef LIB_FOO_H
+#define LIB_FOO_H
+
+int getRandom(void);
+
+#endif /*LIB_FOO_H*/
+```
+
+**foo.c:**
+
+```C
+#include <foo.h>
+
+// See https://xkcd.com/221/ for specs
+int getRandom()
+{
+        return 4;
+}
+```
+
+This should build fine.
+
+
+## build the Hello app against libFoo
+Linking against a custom lib is no different than linking against a system library, after all there's no differences per se.
+
+in Hello's CMakeLists.txt, change the `target_link_libraries` to add the new dependency :
+
+```
+target_link_libraries(Hello sel4muslcsys  muslc libFoo) # add libFoo
+```
+
+Then, in Hello's main.c :
+
+```C
+#include <stdio.h>
+#include <foo.h>
+
+int main(void)
+{
+    printf("Some random value %i\n" , getRandom() );
+    return 0;
+}
+```
+
+Voilà!
 
